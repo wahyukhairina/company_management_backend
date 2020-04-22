@@ -13,6 +13,16 @@ module.exports = {
             response.json({message: 'get data error'})
         }
     },
+    getCompanyDetails : async (request, response) => {
+        try {
+            const id = request.params.companyId 
+            const result = await companyModel.getCompanyDetails(id)
+           response.json(result)
+        } 
+        catch (error) {
+            response.json({message: 'get data error'})
+        }
+    },
 
     deleteCompany: async (request, response) => {
         try {
@@ -28,6 +38,7 @@ module.exports = {
     insertCompany: async (request, response) => {
         try {
             let id = uuid()
+            console.log('data', request.body)
             const data = {
                 id,
                 name : request.body.name,

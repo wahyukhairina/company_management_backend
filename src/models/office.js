@@ -1,10 +1,11 @@
 const connection = require('../config/mysql')
 
 module.exports = {
-    getOffice: () => {
+    getOffice: (id) => {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM office`, (error, result) => {
+            connection.query(`SELECT * FROM office where id_company = '${id}'`, (error, result) => {
                 if (error) reject (new Error(error))
+                console.log(result, 'result')
                 resolve(result)
             })
         })
